@@ -1,16 +1,25 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import avengers from "../assets/Avengers.svg";
-import avengersLogo from "../assets/Avengers logo.svg";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import loading from "../assets/loadingImg.svg";
 import { Link } from "react-router-dom";
+import { uploadCharacters, uploadComics } from "../Redux";
+import ComicsBanner from "../ComicsBanner";
+
 const ComicCards = () => {
   const comics = useSelector((state) => state.comics);
   const [loadMore, setLoadMore] = useState(8);
-  const handleLoadMore = () => {
-    setLoadMore(loadMore + 8);
+
+  const dispatch = useDispatch();
+
+  const fetchAPI = async () => {
+    dispatch(await uploadCharacters());
+    dispatch(await uploadComics());
   };
-  console.log(comics);
+
+  useEffect(() => {
+    fetchAPI();
+  }, []);
+
   if (!comics?.length) {
     return (
       <div className="loading">
@@ -18,34 +27,20 @@ const ComicCards = () => {
       </div>
     );
   }
+
+  const handleLoadMore = () => {
+    setLoadMore(loadMore + 8);
+  };
   return (
     <div>
-      <div className="banner-bg">
-        <div className="banner">
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img width={`152`} height={`90`} src={avengers} alt="" />
-            <h2 style={{ marginLeft: "80px" }}>
-              New comics every week! <br />
-              Stay tuned!
-            </h2>
-          </div>
-          <div>
-            <img src={avengersLogo} alt="" />
-          </div>
-        </div>
-      </div>
+      <ComicsBanner />
       <div className="comicsCard">
         {comics.map((item, index) => {
           if (index < loadMore) {
             return (
               <div key={item.id}>
                 <Link to={`/comic/${item.id}`}>
-                  <img
-                    width={"225"}
-                    height={"346"}
-                    src={`${item.thumbnail.path + ".jpg"}`}
-                    alt=""
-                  />
+                  <img src={`${item.thumbnail.path + ".jpg"}`} alt="" />
                 </Link>
 
                 <h3>{item.title}</h3>
@@ -55,7 +50,7 @@ const ComicCards = () => {
           }
         })}
       </div>
-      <div style={{ textAlign: "center" }} className="load-btn">
+      <div className="load-btn center">
         <button className="button button__main try" onClick={handleLoadMore}>
           <div className="inner try">LOAD MORE</div>
         </button>

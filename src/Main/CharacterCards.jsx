@@ -28,7 +28,6 @@ const CharacterCards = () => {
   }, []);
 
   const characters = useSelector((state) => state.characters);
-  console.log(characters);
   if (!characters?.length) {
     return (
       <div className="loading">
@@ -49,13 +48,8 @@ const CharacterCards = () => {
                   className={infoAboutCard.id === item.id ? "active" : "card"}
                   onClick={() => handleActive(item)}
                 >
-                  <div style={{ textDecoration: "none", color: "white" }}>
-                    <img
-                      width={"200px"}
-                      height={"200px"}
-                      src={`${item.thumbnail.path + ".jpg"}`}
-                      alt=""
-                    />
+                  <div className="card-blocks">
+                    <img src={`${item.thumbnail.path + ".jpg"}`} alt="" />
                     <h2>{item.name}</h2>
                   </div>
                 </div>

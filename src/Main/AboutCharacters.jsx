@@ -22,8 +22,6 @@ const AboutCharacters = () => {
       <div className="white-bg">
         <div className="character">
           <img
-            width={"200px"}
-            height={"200px"}
             src={`${characters[randomNum].thumbnail.path + ".jpg"}`}
             alt=""
           />

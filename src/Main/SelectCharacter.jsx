@@ -6,58 +6,20 @@ const SelectCharacter = ({ infoAboutCard }) => {
     return (
       <div className="info">
         <h3>Please select a character to see information</h3>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <div className="info__title">
           <div className="circle"></div>
-          <div
-            style={{
-              width: "290px",
-              height: "16px",
-              backgroundColor: "#C4C4C4",
-            }}
-          ></div>
+          <div className="subtitle"></div>
         </div>
-        <div
-          style={{
-            width: "325px",
-            height: "35px",
-            margin: "15px auto",
-            backgroundColor: "#C4C4C4",
-          }}
-        ></div>
-        <div
-          style={{
-            width: "325px",
-            height: "35px",
-            margin: "15px auto",
-            backgroundColor: "#C4C4C4",
-          }}
-        ></div>
-        <div
-          style={{
-            width: "325px",
-            height: "35px",
-            margin: "15px auto",
-            backgroundColor: "#C4C4C4",
-          }}
-        ></div>
+        <div className="blocks"></div>
+        <div className="blocks"></div>
+        <div className="blocks"></div>
       </div>
     );
   } else {
     return (
       <div className="selected-block">
         <div className="selected">
-          <img
-            width={"159px"}
-            height={"147px"}
-            src={`${infoAboutCard.thumbnail.path + ".jpg"}`}
-            alt=""
-          />
+          <img src={`${infoAboutCard.thumbnail.path + ".jpg"}`} alt="" />
           <div className="title">
             <strong>{infoAboutCard.name}</strong>
             <div className="selected-btn">
@@ -77,7 +39,7 @@ const SelectCharacter = ({ infoAboutCard }) => {
           </div>
         </div>
         <div className="subtitle">
-          <p>{infoAboutCard.description || <p>no info</p>}</p>
+          <p>{infoAboutCard.description || "no info"}</p>
         </div>
       </div>
     );

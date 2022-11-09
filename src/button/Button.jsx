@@ -1,9 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 const Button = (props) => {
-  const characters = useSelector((state) => state.characters);
-
   return (
     <a
       href={

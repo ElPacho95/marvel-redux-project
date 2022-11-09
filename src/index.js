@@ -8,7 +8,6 @@ import { createStore } from "redux";
 import { getAPI } from "./Redux";
 
 const store = createStore(getAPI);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
@@ -17,3 +16,4 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
+gi
