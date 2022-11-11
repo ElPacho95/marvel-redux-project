@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import loading from "../assets/loadingImg.svg";
 import { Link } from "react-router-dom";
-import { uploadCharacters, uploadComics } from "../Redux";
+import { loadComics } from "../store/reducer";
 import ComicsBanner from "../ComicsBanner";
 
 const ComicCards = () => {
@@ -11,13 +11,8 @@ const ComicCards = () => {
 
   const dispatch = useDispatch();
 
-  const fetchAPI = async () => {
-    dispatch(await uploadCharacters());
-    dispatch(await uploadComics());
-  };
-
   useEffect(() => {
-    fetchAPI();
+    dispatch(loadComics());
   }, []);
 
   if (!comics?.length) {

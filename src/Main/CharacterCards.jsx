@@ -1,9 +1,9 @@
 import loading from "../assets/loadingImg.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadCharacters, uploadComics } from "../Redux";
 import React, { useEffect, useState } from "react";
 import SelectCharacter from "./SelectCharacter";
 import AboutCharacters from "./AboutCharacters";
+import { loadCharacters } from "../store/reducer";
 
 const CharacterCards = () => {
   const [loadMore, setLoadMore] = useState(9);
@@ -14,17 +14,11 @@ const CharacterCards = () => {
   };
   const handleActive = (card) => {
     setInfoAboutCard(card);
-    return null;
   };
   const dispatch = useDispatch();
 
-  const fetchAPI = async () => {
-    dispatch(await uploadCharacters());
-    dispatch(await uploadComics());
-  };
-
   useEffect(() => {
-    fetchAPI();
+    dispatch(loadCharacters());
   }, []);
 
   const characters = useSelector((state) => state.characters);
